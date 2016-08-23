@@ -5,6 +5,8 @@
  */
 package interfaz;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jaime
@@ -66,9 +68,19 @@ public class Ejercicio extends javax.swing.JFrame {
         jPanel1.add(txtDias, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 70, -1));
 
         cmdCalcular.setText("Calcular");
+        cmdCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdCalcularActionPerformed(evt);
+            }
+        });
         jPanel1.add(cmdCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
 
         cmdBorrar.setText("Borrar");
+        cmdBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBorrarActionPerformed(evt);
+            }
+        });
         jPanel1.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, -1, -1));
 
         jLabel4.setText("Monto a pagar");
@@ -108,6 +120,36 @@ public class Ejercicio extends javax.swing.JFrame {
               evt.consume(); 
           } 
     }//GEN-LAST:event_txtDiasKeyTyped
+
+    private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
+
+        txtDias.setText("");
+        txtPeliculas.setText("");
+        lblMonto.setText("");
+        
+        txtPeliculas.requestFocusInWindow();
+        
+    }//GEN-LAST:event_cmdBorrarActionPerformed
+
+    private void cmdCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCalcularActionPerformed
+
+        if(txtPeliculas.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Digite la cantidad de peliculas","ERROR",JOptionPane.ERROR_MESSAGE);
+        txtPeliculas.requestFocusInWindow();
+        }else if(txtDias.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Digite el numero de dias a alquilar las peliculas","ERROR",JOptionPane.ERROR_MESSAGE);
+            txtDias.requestFocusInWindow();
+        }else{
+            
+            double peli=Double.parseDouble(txtPeliculas.getText());
+            double dias=Double.parseDouble(txtDias.getText());
+            
+            double valor=(dias*1500);
+            double monto=(peli*valor);
+            
+            lblMonto.setText(""+monto);
+}
+    }//GEN-LAST:event_cmdCalcularActionPerformed
 
     /**
      * @param args the command line arguments
